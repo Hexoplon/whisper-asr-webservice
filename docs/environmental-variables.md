@@ -109,7 +109,7 @@ export ASR_DIARIZE_MODEL="pyannote/speaker-diarization-3.1"
 
 When using the WhisperX engine, you can specify a custom diarization model. This is particularly useful when running the service offline. If not specified, WhisperX will use its default diarization model.
 
-Note: The HF_TOKEN is still required for downloading and using diarization models.
+Note: The HF_TOKEN is still required when using custom diarization model path.
 
 ### Hugging Face Token
 
@@ -118,3 +118,15 @@ export HF_TOKEN=your_token_here
 ```
 
 Required when using the WhisperX engine to download the diarization model.
+
+### Configuring Custom VAD Model (WhisperX)
+
+```shell
+export ASR_WHISPERX_VAD_MODEL="/path/to/vad/model/pytorch_model.bin"
+```
+
+When using the WhisperX engine, you can specify a custom Voice Activity Detection (VAD) model. The path must be the path to the `pytorch_model.bin` file, and hash must match the expected hash for the release of Pyanote.
+
+This is particularly useful when running the service offline. If not specified, WhisperX will use its default VAD model.
+
+Note: The VAD model is downloaded from the Hugging Face Model Hub.

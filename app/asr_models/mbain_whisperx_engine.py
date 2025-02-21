@@ -22,11 +22,18 @@ class WhisperXASR(ASRModel):
 
     def load_model(self):
         asr_options = {"without_timestamps": False}
+        vad_options = {}
+
+        # Add VAD model if configured
+        if CONFIG.WHISPERX_VAD_MODEL:
+            vad_options = {"model_fp": CONFIG.WHISPERX_VAD_MODEL}
+
         self.model['whisperx'] = whisperx.load_model(
             CONFIG.MODEL_NAME,
             device=CONFIG.DEVICE,
             compute_type=CONFIG.MODEL_QUANTIZATION,
-            asr_options=asr_options
+            asr_options=asr_options,
+            vad_options=vad_options,
         )
 
         if CONFIG.HF_TOKEN != "":

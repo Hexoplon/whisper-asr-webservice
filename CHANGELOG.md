@@ -6,7 +6,8 @@ Unreleased
 
 ### Added
 
-- Added support for custom alignment models and diarization models
+- Added support for custom alignment model paths and diarization model paths for WhisperX
+- Added support for custom VAD model path for WhisperX
 
 [1.8.2] (2025-02-18)
 --------------------

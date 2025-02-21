@@ -59,3 +59,6 @@ class CONFIG:
 
     # Custom diarization model for WhisperX
     DIARIZE_MODEL = os.getenv("ASR_DIARIZE_MODEL", "")
+
+    # Custom VAD model path for WhisperX
+    WHISPERX_VAD_MODEL = os.getenv("ASR_WHISPERX_VAD_MODEL", "")
