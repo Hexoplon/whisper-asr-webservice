@@ -63,13 +63,21 @@ class WhisperXASR(ASRModel):
             language = result["language"]
 
         # Load the required model and cache it
-        # If we transcribe models in many different languages, this may lead to OOM propblems
+        # If we transcribe models in many different languages, this may lead to OOM problems
         if result["language"] in self.model['align_model']:
             model_x, metadata = self.model['align_model'][result["language"]]
         else:
-            self.model['align_model'][result["language"]] = whisperx.load_align_model(
-                language_code=result["language"], device=CONFIG.DEVICE
-            )
+            # Check if we have a custom alignment model configured for this language
+            if result["language"] in CONFIG.ALIGN_MODELS:
+                self.model['align_model'][result["language"]] = whisperx.load_align_model(
+                    model_name=CONFIG.ALIGN_MODELS[result["language"]],
+                    device=CONFIG.DEVICE
+                )
+            else:
+                self.model['align_model'][result["language"]] = whisperx.load_align_model(
+                    language_code=result["language"],
+                    device=CONFIG.DEVICE
+                )
             model_x, metadata = self.model['align_model'][result["language"]]
 
         # Align whisper output

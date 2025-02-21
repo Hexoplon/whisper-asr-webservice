@@ -45,3 +45,14 @@ class CONFIG:
     SUBTITLE_MAX_LINE_WIDTH = int(os.getenv("SUBTITLE_MAX_LINE_WIDTH", 1000))
     SUBTITLE_MAX_LINE_COUNT = int(os.getenv("SUBTITLE_MAX_LINE_COUNT", 2))
     SUBTITLE_HIGHLIGHT_WORDS = os.getenv("SUBTITLE_HIGHLIGHT_WORDS", "false").lower() == "true"
+
+    # Alignment models configuration for WhisperX
+    # Format: "lang1:model1,lang2:model2"
+    # Example: "no:no-wav2vec2,en:en-wav2vec2"
+    ALIGN_MODELS = {}
+    align_models_str = os.getenv("ASR_ALIGN_MODELS", "")
+    if align_models_str:
+        try:
+            ALIGN_MODELS = dict(pair.split(":") for pair in align_models_str.split(","))
+        except ValueError:
+            print("Warning: Invalid ASR_ALIGN_MODELS format. Expected 'lang1:model1,lang2:model2'")

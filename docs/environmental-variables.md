@@ -89,6 +89,18 @@ These options only apply when using the WhisperX engine:
 - `SUBTITLE_MAX_LINE_COUNT`: Maximum number of lines per subtitle (default: 2)
 - `SUBTITLE_HIGHLIGHT_WORDS`: Enable word highlighting in subtitles (default: false)
 
+### Configuring Custom Alignment Models (WhisperX)
+
+```shell
+export ASR_ALIGN_MODELS="lang1:model1,lang2:model2"
+```
+
+When using the WhisperX engine, you can specify custom alignment models for specific languages. The format is a comma-separated list of language codes and model paths. This is particularly useful when running the service offline.
+
+Format: `lang1:model1,lang2:model2`
+
+If not specified for a language, WhisperX will use its default alignment models.
+
 ### Hugging Face Token
 
 ```shell
