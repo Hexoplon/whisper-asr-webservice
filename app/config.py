@@ -56,3 +56,6 @@ class CONFIG:
             ALIGN_MODELS = dict(pair.split(":") for pair in align_models_str.split(","))
         except ValueError:
             print("Warning: Invalid ASR_ALIGN_MODELS format. Expected 'lang1:model1,lang2:model2'")
+
+    # Custom diarization model for WhisperX
+    DIARIZE_MODEL = os.getenv("ASR_DIARIZE_MODEL", "")

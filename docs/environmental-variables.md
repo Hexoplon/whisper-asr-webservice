@@ -101,6 +101,16 @@ Format: `lang1:model1,lang2:model2`
 
 If not specified for a language, WhisperX will use its default alignment models.
 
+### Configuring Custom Diarization Model (WhisperX)
+
+```shell
+export ASR_DIARIZE_MODEL="pyannote/speaker-diarization-3.1"
+```
+
+When using the WhisperX engine, you can specify a custom diarization model. This is particularly useful when running the service offline. If not specified, WhisperX will use its default diarization model.
+
+Note: The HF_TOKEN is still required for downloading and using diarization models.
+
 ### Hugging Face Token
 
 ```shell

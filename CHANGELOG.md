@@ -4,6 +4,10 @@ Changelog
 Unreleased
 ----------
 
+### Added
+
+- Added support for custom alignment models and diarization models
+
 [1.8.2] (2025-02-18)
 --------------------
 

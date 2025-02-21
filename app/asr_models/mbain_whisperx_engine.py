@@ -30,10 +30,15 @@ class WhisperXASR(ASRModel):
         )
 
         if CONFIG.HF_TOKEN != "":
-            self.model['diarize_model'] = whisperx.DiarizationPipeline(
-                use_auth_token=CONFIG.HF_TOKEN,
-                device=CONFIG.DEVICE
-            )
+            diarize_kwargs = {
+                "use_auth_token": CONFIG.HF_TOKEN,
+                "device": CONFIG.DEVICE
+            }
+            # Use custom diarization model if specified
+            if CONFIG.DIARIZE_MODEL:
+                diarize_kwargs["model_name"] = CONFIG.DIARIZE_MODEL
+
+            self.model['diarize_model'] = whisperx.DiarizationPipeline(**diarize_kwargs)
 
         Thread(target=self.monitor_idleness, daemon=True).start()
 
